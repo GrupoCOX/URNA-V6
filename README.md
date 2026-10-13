@@ -1,75 +1,96 @@
-# 🗳️ Urna Eletrônica - República Federativa do Berreta (v3.0.0)
+# 🗳️ Sistema de Urna Eletrônica
 
-Um simulador web avançado, panorâmico e responsivo de Urna Eletrônica fortemente inspirado no sistema eleitoral real brasileiro. O projeto conta com etapas de cadastro livre de candidatos, visor expandido de 1000px para nomes completos, carregamento automatizado de fotos, relatório final com ranking percentual monoespaçado e exportação limpa para documento PDF oficial.
-
----
-
-## 🚀 Funcionalidades e Melhorias da Versão
-
-* **Interface Panorâmica (1000px):** Tela de votação ampliada via CSS com contornos robustos e visores massivos, ideal para exibição imponente e confortável em qualquer monitor.
-* **Visor com Nome Completo em Destaque:** Painel dividido (número à esquerda e nome à direita) configurado para forçar letras maiúsculas (caixa alta) e negrito robusto, comportando nomes longos sem quebras de layout.
-* **Carregamento Automático de Fotos:** Associa de forma inteligente as imagens dos candidatos baseando-se estritamente na ordem cronológica de inscrição (1º cadastrado = `1.jpg`, 2º cadastrado = `2.jpg`, etc.).
-* **Cadastro Livre de Candidatos:** Remoção de limites operacionais, permitindo registrar quantos candidatos forem necessários. O pleito inicia apenas com o comando manual do botão verde "Iniciar Eleição".
-* **Áudio Oficial Calibrado ("Pilili"):** Engenharia acústica baseada na `Web Audio API` nativa. Sintetiza ondas quadradas de circuito (`square`) em fluxo contínuo para reproduzir o arpejo exato da urna real (3 bipes curtos e rápidos subindo a escala + 1 bipe longo e grave de encerramento). Não necessita de arquivos `.mp3`.
-* **Relatório Final Monoespaçado e Percentual:** Exibe o resultado das eleições com alinhamento milimétrico reta-a-reta utilizando tipografia monoespaçada (`Courier New`). Traz a quantidade de votos e a respectiva porcentagem individual calculada sobre o total geral.
-* **Função "Salvar em PDF":** Botão dedicado que aciona o gerenciador de impressão. O CSS conta com regras de mídia `@media print` que limpam o documento na hora de salvar, ocultando botões, fundo cinza, topo e rodapé para cuspir uma folha de apuração limpa e oficial.
-* **Fluxo Seguro e Confidencial:** Mensagem intermediária de fim de voto (**FIM**) com botão para preparar e limpar o terminal para o próximo eleitor com total privacidade.
+Um sistema web completo de votação e apuração de votos, desenvolvido com inspiração na **Urna Eletrônica da Justiça Eleitoral Brasileira**. O projeto simula o processo de votação, controle administrativo de urnas, além de relatórios e apuração detalhada dos votos.
 
 ---
 
-## 📁 Estrutura de Arquivos Obrigatória
+## 📌 Sumário
 
-Para que o carregamento das fotos e as importações funcionem sem erros, mantenha a seguinte árvore de diretórios em seu projeto:
+- [Visão Geral](#-visão-geral)
+- [Funcionalidades](#-funcionalidades)
+- [Interface e Design](#-interface-e-design)
+- [Tecnologias Utilizadas](#-tecnologias-utilizadas)
+- [Estrutura do Projeto](#-estrutura-do-projeto)
+- [Como Executar](#-como-executar)
+- [Licença](#-licença)
+
+---
+
+## 🔍 Visão Geral
+
+O objetivo principal deste projeto é recriar a experiência visual e funcional da Urna Eletrônica, permitindo:
+- Registro de candidatos e configuração da eleição.
+- Interface tátil/teclado para digitação de números de candidatos com retorno de voz/som.
+- Painel LCD realista com fotos, nome e número dos candidatos.
+- Área administrativa protegida por senha para controle de turnos e encerramento.
+- Módulo de **Urna Mestra / Apuração**, que gera relatórios visuais com gráficos de desempenho, posições dos candidatos e contagem de votos válidos, brancos e nulos.
+
+---
+
+## ✨ Funcionalidades
+
+### 1. Votação (Interface da Urna)
+* **Teclado Físico Interativo:** Teclas numéricas de `0` a `9` com botões funcionais:
+  * **BRANCO:** Para votação em branco.
+  * **CORRIGE:** Limpa os números digitados para reiniciar o voto.
+  * **CONFIRMA:** Grava o voto e emite o sinal sonoro clássico.
+* **Visor LCD Digital:** Exibe foto, nome e número do candidato selecionado.
+* **Tela de Encerramento:** Mensagem clássica de **"FIM"** ao concluir a votação.
+
+### 2. Controle Administrativo & Segurança
+* Proteção por senha em áreas de gerenciamento e encerramento da eleição.
+* Modais interativos de confirmação para liberação de eleitores e controle de acesso.
+
+### 3. Relatórios e Apuração de Votos
+* **Tabela de Ranking Destacada:** Exibe a classificação dos candidatos, porcentagem de votos e badge para eleitos.
+* **Resumo de Votos Gerais:** Indicadores visuais dos totais de votos Válidos, Brancos, Nulos e Total Geral.
+* **Card do Vencedor:** Destaque visual com foto e nome do candidato mais votado.
+* **Suporte à Impressão:** Formatação pronta para impressão/exportação em PDF do boletim de apuração.
+
+---
+
+## 🎨 Interface e Design
+
+A interface foi desenvolvida focando na precisão visual do modelo real:
+- **Painel LCD:** Tom verde clássico com tipografia monoespaçada.
+- **Teclado:** Gradientes de iluminação, sombras 3D e efeitos de animação ao clicar nos botões.
+- **Relatório de Resultados:** Design moderno e limpo com alto contraste para leitura de estatísticas e dados numéricos.
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+- **HTML5:** Estrutura semântica dos componentes e telas.
+- **CSS3:** Estilização avançada com Flexbox, CSS Grid, gradientes, sombras e responsividade.
+- **JavaScript (Vanilla):** Lógica do sistema de votação, armazenamento em memória/localStorage e manipulação do DOM.
+
+---
+
+## 📂 Estrutura do Projeto
 
 ```text
-📁 projeto-urna/
-│
-├── 📁 foto/
-│   ├── 📄 1.jpg
-│   ├── 📄 2.jpg
-│   └── 📄 3.jpg (e assim por diante...)
-│
-├── 📄 index.html
-├── 📄 style.css
-├── 📄 script.js
-└── 📄 README.md
+.
+├── index.html       # Estrutura das telas (Configuração, Votação e Apuração)
+├── style.css        # Estilização completa do projeto e temas da urna
+└── script.js        # Lógica de votação, validação e contagem de votos
 ```
 
-> ⚠️ **Notas Importantes sobre os Arquivos de Imagem:**
-> * A pasta deve se chamar exatamente `foto` (no singular e com letras minúsculas).
-> * As fotos devem ser renomeadas na sequência numérica exata (`1.jpg`, `2.jpg`, etc.) representando a ordem de cadastro, independente do número que o candidato usará para receber votos.
-> * A extensão do arquivo deve ser obrigatoriamente `.jpg` em formato minúsculo.
+---
+
+## 🚀 Como Executar
+
+1. Clone este repositório para a sua máquina local:
+   ```bash
+   git clone https://github.com/seu-usuario/urna-eletronica.git
+   ```
+2. Navegue até o diretório do projeto:
+   ```bash
+   cd urna-eletronica
+   ```
+3. Abra o arquivo `index.html` em qualquer navegador web moderno (Chrome, Firefox, Edge, Safari).
 
 ---
 
-## 🛠️ Como Executar o Simulador
+## 📄 Licença
 
-O ecossistema foi construído com tecnologias web nativas standard (**HTML5 purificado, CSS3 modular e JavaScript Vanilla**). O projeto roda localmente sem pacotes, servidores ou instaladores:
-
-1. Salve os códigos atualizados nos arquivos `index.html`, `style.css` e `script.js`.
-2. Certifique-se de popular a pasta `foto/` conforme a regra descrita na seção anterior.
-3. Clique com o botão direito no arquivo `index.html` e abra-o com o navegador de sua preferência (Google Chrome, Edge, Firefox, Opera ou Safari).
-
----
-
-## 🖨️ Instruções para Geração de PDF Oficial
-
-Ao encerrar a eleição na urna através do botão administrativo (canto inferior direito) e acessar a tela de resultados:
-1. Clique no botão escuro **"Salvar em PDF"**.
-2. Na caixa de diálogo de impressão que o seu navegador abrir, localize o campo **"Destino"** (ou Impressora).
-3. Selecione a opção **"Salvar como PDF"**.
-4. Defina o local de salvamento no seu computador. Graças ao filtro `@media print`, apenas a folha de apuração formatada será impressa.
-
----
-
-## ⚙️ Tecnologias Utilizadas
-
-* **HTML5 Semântico:** Divisão de fluxos por seções estruturadas invisíveis.
-* **CSS3 (Grid Layout & Flexbox):** Organização panorâmica do terminal de 1000px, tabelas de dados milimétricas e regras de ocultação de mídia de impressão.
-* **JavaScript (API de Áudio Web Nativa):** Persistência volátil em memória, controle de estados do DOM, bloqueios de segurança contra formulários fantasmas e modulação eletrônica de frequências sonoras analógicas.
-
----
-
-## 📜 Licença e Propósito
-
-Este projeto é de código aberto e uso livre para fins didáticos, simulações acadêmicas, eleições de grêmios estudantis, votações internas corporativas ou entretenimento.
+Este projeto está sob a licença [MIT](LICENSE) - sinta-se à vontade para usá-lo, modificá-lo e distribuí-lo.
