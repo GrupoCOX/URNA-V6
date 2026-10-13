@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urna Eletrônica - Justiça Eleitoral</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- TOPO PERSONALIZÁVEL -->
+    <header id="topo-republica">
+        <h1 id="texto-topo">JUSTIÇA ELEITORAL</h1>
+    </header>
+
+    <!-- CONTEÚDO CENTRALIZADO -->
+    <main class="conteudo-central">
+
+        <!-- ETAPA PRELIMINAR: SELEÇÃO DO TIPO DE URNA -->
+        <div id="tela-tipo-urna" class="card-tela">
+            <h2>Tipo de Estação</h2>
+            <p id="instrucao-tipo-urna" class="instrucao-config">Selecione o papel desta máquina na eleição:</p>
+            
+            <div id="container-botoes-tipo-urna" class="botoes-turno-container">
+                <button type="button" id="btn-urna-padrao" class="btn-turno">Urna Padrão (Seccional)</button>
+                <button type="button" id="btn-urna-mestra" class="btn-turno btn-mestra">Urna Mestra (Consolidadora)</button>
+            </div>
+
+            <!-- CONFIGURAÇÃO ESPECÍFICA DA URNA PADRÃO -->
+            <div id="box-config-urna-padrao" class="box-subconfig tela-oculta">
+                <div class="campo-form">
+                    <label for="cfg-numero-urna">Identificação desta Urna (Número):</label>
+                    <input type="number" id="cfg-numero-urna" placeholder="Ex: 1" min="1" value="1">
+                </div>
+                <button type="button" id="btn-confirmar-padrao" class="btn-primario">Avançar para Segurança</button>
+            </div>
+
+            <!-- CONFIGURAÇÃO ESPECÍFICA DA URNA MESTRA -->
+            <div id="box-config-urna-mestra" class="box-subconfig tela-oculta">
+                <div class="campo-form">
+                    <label for="cfg-qtd-urnas-auxiliares">Quantidade de Urnas Padrão Auxiliares:</label>
+                    <input type="number" id="cfg-qtd-urnas-auxiliares" placeholder="Ex: 4" min="1" value="4">
+                </div>
+                <button type="button" id="btn-confirmar-mestra" class="btn-primario">Avançar para Segurança</button>
+            </div>
+        </div>
+
+        <!-- ETAPA 0.1: CRIAÇÃO DE SENHA -->
+        <div id="tela-senha" class="card-tela tela-oculta">
+            <h2>Segurança da Eleição</h2>
+            <p class="instrucao-config">Defina uma senha para intermediar os votos e encerrar a eleição posteriormente:</p>
+            <form id="form-senha">
+                <div class="campo-form">
+                    <label for="cfg-senha">Senha:</label>
+                    <input type="password" id="cfg-senha" placeholder="Digite uma senha segura" required>
+                </div>
+                <button type="submit" id="btn-salvar-senha" class="btn-primario">Avançar</button>
+            </form>
+        </div>
+
+        <!-- ETAPA 0.2: CONFIGURAÇÃO DO SISTEMA -->
+        <div id="tela-configuracao" class="card-tela tela-oculta">
+            <h2>Configuração da Eleição</h2>
+            <p class="instrucao-config">Personalize os dados do seu sistema:</p>
+            <form id="form-configuracao">
+                <div class="campo-form">
+                    <label for="cfg-topo">Nome da República (Topo da Tela):</label>
+                    <input type="text" id="cfg-topo" placeholder="Ex: REPÚBLICA FEDERATIVA DO BRASIL" required>
+                </div>
+                <div class="campo-form">
+                    <label for="cfg-rodape">Nome do Tribunal (Rodapé da Tela):</label>
+                    <input type="text" id="cfg-rodape" placeholder="Ex: TRIBUNAL SUPERIOR ELEITORAL" required>
+                </div>
+                <button type="submit" id="btn-salvar-config" class="btn-primario">Salvar e Continuar</button>
+            </form>
+        </div>
+
+        <!-- ETAPA 1: CADASTRO DE CANDIDATOS -->
+        <div id="tela-cadastro" class="card-tela tela-oculta">
+            <h2 id="titulo-cadastro">Cadastro de Candidatos</h2>
+            <p class="instrucao-config">Cadastre os candidatos para a eleição:</p>
+            <form id="form-cadastro">
+                <div class="campo-form">
+                    <label for="cad-numero">Número do Candidato:</label>
+                    <input type="number" id="cad-numero" required min="1">
+                </div>
+                <div class="campo-form">
+                    <label for="cad-nome">Nome do Candidato:</label>
+                    <input type="text" id="cad-nome" required>
+                </div>
+                <div class="campo-form">
+                    <label for="cad-foto">Foto do Candidato:</label>
+                    <input type="file" id="cad-foto" accept="image/*" required>
+                </div>
+                <button type="submit" id="btn-cadastrar" class="btn-primario">Cadastrar Candidato</button>
+            </form>
+            <p id="msg-cadastro"></p>
+
+            <button id="btn-iniciar-eleicao" class="btn-sucesso">Iniciar Eleição</button>
+        </div>
+
+        <!-- ETAPA 2: TELA DE VOTAÇÃO - URNA ELETRÔNICA REAL -->
+        <div id="tela-votacao" class="corpo-urna-real tela-oculta">
+            
+            <div class="cabecalho-urna-real">
+                <div class="brasao-simbolo">★</div>
+                <div class="texto-cabecalho-urna">
+                    <span>JUSTIÇA ELEITORAL</span>
+                </div>
+            </div>
+
+            <!-- VISOR LCD DA URNA -->
+            <div class="visor-lcd-container">
+                <div class="painel-voto">
+                    <p class="instrucao-superior">SEU VOTO VAI PARA</p>
+
+                    <div class="visor-urna">
+                        <div class="campo-numero-container">
+                            <span class="label-numero">Número:</span>
+                            <input type="text" id="voto-numero" readonly placeholder="" autofocus>
+                        </div>
+
+                        <div class="info-candidato">
+                            <div class="bloco-texto-candidato">
+                                <p class="label-nome">Nome:</p>
+                                <div id="voto-nome">...</div>
+                            </div>
+                            <div class="container-foto-candidato">
+                                <img id="voto-foto" src="" alt="Foto do Candidato" class="foto-candidato tela-oculta">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="instrucoes-rodape-lcd">
+                        <p>Aperte a tecla:</p>
+                        <p><strong>VERDE</strong> para CONFIRMAR este voto</p>
+                        <p><strong>LARANJA</strong> para CORRIGIR este voto</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TECLADO FÍSICO REAL -->
+            <div class="painel-teclado-real">
+                <div class="grade-teclas-numericas">
+                    <button class="tecla-num" data-tecla="1">1</button>
+                    <button class="tecla-num" data-tecla="2">2</button>
+                    <button class="tecla-num" data-tecla="3">3</button>
+                    <button class="tecla-num" data-tecla="4">4</button>
+                    <button class="tecla-num" data-tecla="5">5</button>
+                    <button class="tecla-num" data-tecla="6">6</button>
+                    <button class="tecla-num" data-tecla="7">7</button>
+                    <button class="tecla-num" data-tecla="8">8</button>
+                    <button class="tecla-num" data-tecla="9">9</button>
+                    <button class="tecla-num tecla-zero" data-tecla="0">0</button>
+                </div>
+
+                <div class="teclado-acoes-real">
+                    <button id="btn-branco" class="tecla-comando btn-tecla-branco">BRANCO</button>
+                    <button id="btn-corrige" class="tecla-comando btn-tecla-corrige">CORRIGE</button>
+                    <button id="btn-confirma" class="tecla-comando btn-tecla-confirma">CONFIRMA</button>
+                </div>
+            </div>
+
+            <!-- MODAL PARA VALIDAÇÃO DE SENHA AO ENCERRAR -->
+            <div id="box-autenticacao-encerrar" class="box-autenticacao tela-oculta">
+                <p>Digite a senha cadastrada para encerrar:</p>
+                <div class="box-autenticacao-controles">
+                    <input type="password" id="senha-confirmacao" placeholder="Senha de encerramento">
+                    <button id="btn-validar-encerramento" class="btn-modal-confirmar">Confirmar Encerramento</button>
+                    <button id="btn-cancelar-encerramento" class="btn-modal-cancelar">Cancelar</button>
+                </div>
+            </div>
+
+            <div class="area-adm-encerrar">
+                <button id="btn-encerrar">Encerrar Eleição</button>
+            </div>
+        </div>
+
+        <!-- ETAPA DE VOTO CONCLUÍDO (FIM) -->
+        <div id="tela-concluido" class="corpo-urna-real tela-oculta text-center">
+            <div class="visor-lcd-container visor-fim">
+                <h2 class="titulo-fim">F I M</h2>
+                <p class="texto-fim">VOTO COMPUTADO</p>
+            </div>
+
+            <!-- MODAL DE SEGURANÇA PARA PRÓXIMO ELEITOR -->
+            <div id="box-autenticacao-proximo" class="box-autenticacao tela-oculta">
+                <p>Digite a senha cadastrada para liberar o próximo voto:</p>
+                <div class="box-autenticacao-controles">
+                    <input type="password" id="senha-confirmacao-proximo" placeholder="Senha de segurança">
+                    <button id="btn-validar-proximo" class="btn-modal-confirmar">Confirmar</button>
+                    <button id="btn-cancelar-proximo" class="btn-modal-cancelar">Cancelar</button>
+                </div>
+            </div>
+
+            <button id="btn-proximo-eleitor" class="btn-primario btn-liberar-eleitor">Próximo Eleitor (Mesário)</button>
+        </div>
+
+        <!-- ETAPA 3: TELA DE RESULTADOS / RELATÓRIO FINAL DA URNA -->
+        <div id="tela-resultado" class="card-tela-larga tela-oculta">
+            <h2 id="titulo-relatorio-tipo">Relatório Final da Eleição</h2>
+
+            <div id="card-vencedor-destaque" class="card-vencedor-destaque tela-oculta">
+                <h3 class="titulo-vencedor-destaque">CANDIDATO ELEITO</h3>
+                <p id="nome-vencedor-destaque" class="nome-vencedor-destaque"></p>
+                <div class="container-foto-vencedor">
+                    <img id="foto-vencedor-destaque" src="" alt="Foto do Vencedor" class="foto-destaque">
+                </div>
+            </div>
+
+            <div id="ranking-candidatos">
+                <table class="tabela-ranking">
+                    <tbody id="corpo-ranking">
+                        <!-- Lista gerada por JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="votos-gerais">
+                <p id="linha-validos">Votos Válidos: <span id="total-validos">0</span></p>
+                <p id="linha-brancos">Votos em Branco: <span id="total-branco">0</span></p>
+                <p id="linha-nulos">Votos Nulos: <span id="total-nulos">0</span></p>
+                <p id="linha-geral">Total Geral de Votos: <span id="total-geral" class="total-geral-destaque">0</span></p>
+            </div>
+
+            <!-- BOTÃO VERMELHO DA URNA MESTRA PARA IR À APURAÇÃO CONSOLIDADA -->
+            <div id="container-btn-apuracao-mestra" class="tela-oculta container-mestra-acao">
+                <button id="btn-ir-apuracao-mestra" class="btn-mestra-destaque">Apuração Geral das Urnas</button>
+            </div>
+
+            <div class="botoes-resultado-container">
+                <button id="btn-pdf" class="btn-secundario">Salvar em PDF</button>
+                <button id="btn-reiniciar" class="btn-sucesso">Nova Eleição</button>
+            </div>
+        </div>
+
+        <!-- ETAPA 4: TELA DE APURAÇÃO GERAL DA URNA MESTRA -->
+        <div id="tela-consolidação-mestra" class="card-tela-larga tela-oculta">
+            <h2>Consolidação Geral de Votos</h2>
+            <p class="instrucao-config">Insira os boletins das urnas seccionais para calcular o resultado geral:</p>
+
+            <div id="container-entradas-urnas-padrao">
+                <!-- Inputs das urnas dinamicamente gerados -->
+            </div>
+
+            <!-- MODAL DE CONFIRMAÇÃO DE SENHA PARA CONSOLIDAÇÃO -->
+            <div id="box-autenticacao-consolidar" class="box-autenticacao tela-oculta">
+                <p>Digite a senha cadastrada para calcular e apurar os resultados gerais:</p>
+                <div class="box-autenticacao-controles">
+                    <input type="password" id="senha-confirmacao-consolidar" placeholder="Senha de segurança">
+                    <button id="btn-validar-consolidar" class="btn-modal-confirmar">Confirmar Apuração</button>
+                    <button id="btn-cancelar-consolidar" class="btn-modal-cancelar">Cancelar</button>
+                </div>
+            </div>
+
+            <div class="botoes-resultado-container">
+                <button id="btn-calcular-resultado-geral" class="btn-perigo">Calcular Resultado Geral Consolidado</button>
+                <button id="btn-voltar-relatorio-mestra" class="btn-secundario">Voltar</button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- RODAPÉ PERSONALIZÁVEL -->
+    <footer id="rodape-tribunal">
+        <p id="texto-rodape">TRIBUNAL SUPERIOR ELEITORAL</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

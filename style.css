@@ -1,0 +1,788 @@
+/* ==========================================
+   CONFIGURAÇÕES GLOBAIS E BODY
+   ========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace, 'Helvetica Neue', Arial, sans-serif;
+}
+
+body {
+    background-color: #1e293b; /* Cinza escuro azulado */
+    background-image: radial-gradient(#334155 1px, transparent 0);
+    background-size: 24px 24px;
+    display: grid;
+    grid-template-rows: auto 1fr auto; 
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.tela-oculta {
+    display: none !important;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.conteudo-central {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px 0;
+}
+
+#topo-republica {
+    text-align: center;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #2563eb; /* Azul primário */
+    padding-bottom: 15px;
+    width: 100%;
+}
+
+#topo-republica h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+    margin: 0;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+
+#rodape-tribunal {
+    text-align: center;
+    margin-top: 30px;
+    padding: 15px 0;
+    border-top: 1px solid #475569;
+    width: 100%;
+}
+
+#rodape-tribunal p {
+    font-size: 0.9rem;
+    color: #94a3b8;
+    letter-spacing: 2px;
+    margin: 0;
+}
+
+/* ==========================================
+   CARDS DE CONFIGURAÇÃO / ADMINISTRAÇÃO
+   ========================================== */
+.card-tela {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    border-top: 6px solid #2563eb;
+}
+
+.card-tela-larga {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 950px;
+    margin: 0 auto;
+    border-top: 6px solid #1d4ed8;
+}
+
+h2, h3 {
+    color: #0f172a;
+    margin-bottom: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    font-family: Arial, sans-serif;
+}
+
+.instrucao-config {
+    font-size: 0.95rem;
+    color: #475569;
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* ==========================================
+   TELA DE SENHA (AMARELA DE SEGURANÇA)
+   ========================================== */
+#tela-senha {
+    background-color: #fff3cd;
+    border: 2px solid #ffeeba;
+    border-top: 6px solid #f39c12;
+}
+
+#tela-senha h2 {
+    color: #856404;
+}
+
+#tela-senha .instrucao-config {
+    color: #856404;
+}
+
+/* ==========================================
+   DESIGN DA URNA ELETRÔNICA REAL
+   ========================================== */
+.corpo-urna-real {
+    background: #e2e8f0;
+    background: linear-gradient(145deg, #ffffff, #cbd5e1);
+    border: 4px solid #94a3b8;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 2px 3px #ffffff;
+    padding: 35px 45px 75px 45px;
+    width: 100%;
+    max-width: 1050px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    grid-template-rows: auto 1fr;
+    gap: 25px 35px;
+    position: relative;
+}
+
+.cabecalho-urna-real {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-bottom: 2px solid #cbd5e1;
+    padding-bottom: 12px;
+}
+
+.brasao-simbolo {
+    font-size: 2rem;
+    color: #ffffff;
+    background: #1e3a8a;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.texto-cabecalho-urna span {
+    font-family: Arial, sans-serif;
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: #1e3a8a;
+    letter-spacing: 2px;
+}
+
+/* ==========================================
+   TELA LCD DA URNA (VERDE LCD CLÁSSICO)
+   ========================================== */
+.visor-lcd-container {
+    background-color: #cddcc1;
+    border: 8px solid #333d3d;
+    border-radius: 8px;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.25), 0 3px 6px rgba(0,0,0,0.1);
+    padding: 25px;
+    min-height: 380px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.painel-voto {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.instrucao-superior {
+    font-size: 1rem;
+    color: #1e2a1e;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.visor-urna {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.campo-numero-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.label-numero {
+    font-size: 0.95rem;
+    color: #2b3a2b;
+    font-weight: bold;
+}
+
+#voto-numero {
+    width: 140px;
+    height: 65px;
+    font-size: 2.8rem;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    text-align: center;
+    border: 3px solid #2b3a2b;
+    background: #dbe8cf;
+    color: #0d1a0d;
+    letter-spacing: 6px;
+}
+
+.info-candidato {
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.bloco-texto-candidato {
+    flex-grow: 1;
+}
+
+.label-nome {
+    font-size: 0.95rem;
+    color: #2b3a2b;
+    font-weight: bold;
+}
+
+#voto-nome {
+    color: #0a150a;
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    word-break: break-word;
+    margin-top: 5px;
+}
+
+.container-foto-candidato {
+    width: 125px;
+    height: 160px;
+    background-color: #b8c9ab;
+    border: 3px solid #2b3a2b;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.foto-candidato {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.instrucoes-rodape-lcd {
+    border-top: 2px dashed #4a5e4a;
+    padding-top: 10px;
+    margin-top: 15px;
+    font-size: 0.85rem;
+    color: #1e2a1e;
+    line-height: 1.4;
+}
+
+/* TELA DE FIM NA URNA REAL */
+.visor-fim {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.titulo-fim {
+    font-size: 5rem;
+    color: #0d1a0d;
+    font-family: 'Courier New', monospace;
+    font-weight: 900;
+    letter-spacing: 12px;
+}
+
+.texto-fim {
+    font-size: 1.6rem;
+    color: #1e2a1e;
+    font-weight: bold;
+}
+
+/* TECLADO FÍSICO REAL */
+.painel-teclado-real {
+    background: #1e293b;
+    border: 4px solid #0f172a;
+    border-radius: 12px;
+    padding: 25px 20px;
+    box-shadow: inset 0 0 10px #000000, 0 5px 10px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.grade-teclas-numericas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.tecla-num {
+    background: linear-gradient(180deg, #334155 0%, #0f172a 100%);
+    color: #ffffff;
+    border: 1px solid #0f172a;
+    border-radius: 6px;
+    font-size: 1.6rem;
+    font-weight: bold;
+    padding: 14px 0;
+    cursor: pointer;
+    box-shadow: 0 5px 0 #020617, 0 8px 10px rgba(0,0,0,0.5);
+    transition: transform 0.05s, box-shadow 0.05s;
+    font-family: Arial, sans-serif;
+}
+
+.tecla-num:active {
+    transform: translateY(4px);
+    box-shadow: 0 1px 0 #020617;
+}
+
+.tecla-zero {
+    grid-column: 2;
+}
+
+.teclado-acoes-real {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    align-items: flex-end;
+}
+
+.tecla-comando {
+    border: none;
+    border-radius: 4px;
+    font-family: Arial, sans-serif;
+    font-weight: 900;
+    font-size: 0.85rem;
+    padding: 16px 2px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: transform 0.05s, box-shadow 0.05s;
+}
+
+.tecla-comando:active {
+    transform: translateY(4px);
+}
+
+/* BOTÃO BRANCO */
+.btn-tecla-branco {
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #bdc3c7;
+    box-shadow: 0 5px 0 #bdc3c7, 0 8px 10px rgba(0,0,0,0.3);
+}
+.btn-tecla-branco:active { 
+    box-shadow: 0 1px 0 #bdc3c7; 
+}
+
+.btn-tecla-corrige {
+    background: linear-gradient(180deg, #ff8c00 0%, #d35400 100%);
+    color: #ffffff;
+    box-shadow: 0 5px 0 #a04000, 0 8px 10px rgba(0,0,0,0.4);
+}
+.btn-tecla-corrige:active { box-shadow: 0 1px 0 #a04000; }
+
+/* BOTÃO CONFIRMA */
+.btn-tecla-confirma {
+    background-color: #2ecc71;
+    color: #ffffff;
+    box-shadow: 0 5px 0 #27ae60, 0 8px 10px rgba(0,0,0,0.4);
+    padding: 24px 2px;
+    font-size: 0.95rem;
+}
+.btn-tecla-confirma:active { 
+    box-shadow: 0 1px 0 #27ae60; 
+}
+
+/* ==========================================
+   MODAIS DE AUTENTICAÇÃO (AMARELOS)
+   ========================================== */
+.box-autenticacao {
+    grid-column: 1 / -1;
+    background: #fff3cd;
+    border: 2px solid #ffeeba;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.box-autenticacao p {
+    color: #856404;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-family: Arial, sans-serif;
+}
+
+.box-autenticacao-controles {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.box-autenticacao input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.btn-modal-confirmar {
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+}
+
+.btn-modal-cancelar {
+    background-color: #64748b;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+}
+
+.area-adm-encerrar {
+    position: absolute;
+    bottom: 20px;
+    left: 45px;
+}
+
+/* BOTÃO ENCERRAR ELEIÇÃO (VERMELHO) */
+#btn-encerrar {
+    background-color: #c0392b;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+    transition: background 0.2s;
+    text-transform: uppercase;
+}
+
+#btn-encerrar:hover {
+    background-color: #a93226;
+}
+
+/* ==========================================
+   BOTÕES COMPACTOS DE APURAÇÃO (URNA MESTRA)
+   ========================================== */
+.btn-mestra-destaque {
+    background-color: #c0392b !important;
+    color: white;
+    border: none;
+    padding: 9px 18px; /* Tamanho reduzido e compacto */
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 0.88rem; /* Fonte menor */
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    text-transform: uppercase;
+    box-shadow: 0 2px 6px rgba(192, 57, 43, 0.3);
+    font-family: Arial, sans-serif;
+    display: inline-block;
+}
+
+.btn-mestra-destaque:hover {
+    background-color: #a93226 !important;
+    transform: translateY(-1px);
+}
+
+.btn-perigo {
+    width: auto; /* Largura ajustada */
+    padding: 9px 18px;
+    background-color: #c0392b;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 0.88rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-family: Arial, sans-serif;
+    transition: background 0.2s;
+}
+
+.btn-perigo:hover {
+    background-color: #a93226;
+}
+
+.btn-liberar-eleitor {
+    margin-top: 25px;
+    grid-column: 1 / -1;
+}
+
+/* CAMPOS E FORMULÁRIOS */
+.campo-form {
+    margin-bottom: 15px;
+    font-family: Arial, sans-serif;
+}
+
+.campo-form label {
+    display: block;
+    margin-bottom: 5px;
+    color: #334155;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.campo-form input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.campo-form input:focus {
+    border-color: #2563eb;
+    outline: none;
+}
+
+.btn-primario, .btn-sucesso, .btn-secundario {
+    width: 100%;
+    padding: 12px;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-family: Arial, sans-serif;
+}
+
+.btn-primario { background-color: #2563eb; }
+.btn-primario:hover { background-color: #1d4ed8; }
+
+.btn-sucesso { 
+    background-color: #27ae60; 
+}
+.btn-sucesso:hover { 
+    background-color: #219653; 
+}
+
+.btn-secundario { background-color: #64748b; }
+.btn-secundario:hover { background-color: #475569; }
+
+.botoes-turno-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.btn-turno {
+    padding: 12px;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+}
+
+.btn-turno:hover { background-color: #1d4ed8; }
+
+.btn-mestra { background-color: #1e3a8a; }
+.btn-mestra:hover { background-color: #0f172a; }
+
+/* ==========================================
+   TABELA E DADOS DO RELATÓRIO COM DESTAQUE
+   ========================================== */
+.tabela-ranking {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 25px 0;
+    font-family: Arial, sans-serif;
+    border: 2px solid #cbd5e1;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.tabela-ranking tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+.tabela-ranking tr:hover {
+    background-color: #f1f5f9;
+}
+
+.tabela-ranking td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #e2e8f0;
+    color: #1e293b;
+    font-size: 1.05rem;
+}
+
+.col-posicao {
+    width: 80px;
+    text-align: center;
+    color: #1e3a8a !important;
+    font-size: 1.2rem !important;
+}
+
+.col-numero {
+    width: 100px;
+    text-align: center;
+    background-color: #e2e8f0;
+    font-weight: bold;
+    color: #0f172a;
+    letter-spacing: 1px;
+}
+
+.col-nome {
+    font-weight: 700;
+    font-size: 1.15rem !important;
+    color: #0f172a;
+    text-transform: uppercase;
+}
+
+.col-votos {
+    text-align: right;
+    font-size: 1.1rem !important;
+    color: #1e3a8a;
+}
+
+.col-porcentagem {
+    text-align: right;
+    color: #2563eb;
+    font-size: 1.05rem !important;
+}
+
+.badge-eleito {
+    background: #27ae60;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    margin-left: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 4px rgba(39, 174, 96, 0.3);
+}
+
+/* RESUMO DOS VOTOS GERAIS DESTACADO */
+.votos-gerais {
+    background: #f1f5f9;
+    border: 2px solid #cbd5e1;
+    border-left: 8px solid #2563eb;
+    padding: 22px;
+    border-radius: 8px;
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+}
+
+.votos-gerais p {
+    font-family: Arial, sans-serif;
+    font-size: 1rem;
+    color: #475569;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.votos-gerais p span {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #1e3a8a;
+}
+
+.total-geral-destaque {
+    color: #c0392b !important;
+    font-size: 1.7rem !important;
+}
+
+.botoes-resultado-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.card-vencedor-destaque {
+    background: #eff6ff;
+    border: 3px solid #2563eb;
+    border-radius: 12px;
+    padding: 22px;
+    text-align: center;
+    margin-bottom: 25px;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.12);
+}
+
+.titulo-vencedor-destaque {
+    color: #1e3a8a;
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+}
+
+.nome-vencedor-destaque {
+    color: #2563eb;
+    font-size: 2.2rem;
+    font-weight: 900;
+    margin-top: 5px;
+}
+
+.container-foto-vencedor {
+    width: 160px;
+    height: 200px;
+    margin: 15px auto 0 auto;
+    border: 4px solid #2563eb;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.foto-destaque {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* IMPRESSÃO PDF */
+@media print {
+    body {
+        background: white !important;
+        display: block !important;
+        padding: 0 !important;
+    }
+    #topo-republica, #rodape-tribunal, .botoes-resultado-container, #container-btn-apuracao-mestra {
+        display: none !important;
+    }
+    #tela-resultado {
+        box-shadow: none !important;
+        padding: 0 !important;
+        max-width: 100% !important;
+    }
+}
